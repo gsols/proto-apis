@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.13](https://github.com/gsols/proto-apis/compare/v0.1.12...v0.1.13) (2023-12-10)
+
+
+### Features
+
+* remove unnecesary body ([90a5a23](https://github.com/gsols/proto-apis/commit/90a5a232a2a017c7a4bfbd7c09cd116c023717ae))
+
 ## [0.1.12](https://github.com/gsols/proto-apis/compare/v0.1.11...v0.1.12) (2023-12-10)
 
 
