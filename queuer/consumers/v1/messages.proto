@@ -15,6 +15,7 @@ import "queuer/entities/v1/message.proto";
 import "queuer/entities/v1/command.proto";
 import "queuer/entities/v1/stats.proto";
 import "queuer/entities/v1/result.proto";
+import "queuer/entities/v1/session.proto";
 
 // Defines the import path that should be used to import the generated package,
 // and the package name.
@@ -22,19 +23,29 @@ option go_package = "github.com/gsols/goproto/queuer/consumers/v1;v1";
 option php_namespace = "GSols\\PHPProto\\Queuer\\Consumers\\v1";
 option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Consumers\\v1\\Metadata";
 
+message RegisterConsumerRequest {
+  entities.v1.Consumer consumer = 1;
+}
+
+message RegisterConsumerResponse {
+  entities.v1.Result result = 1;
+  entities.v1.Session session = 2;
+}
+
 message PublishConsumerStatsRequest {
-  entities.v1.Stats stats = 1;
+  string consumer_id = 1 [(validate.rules).string.uuid = true];
+  entities.v1.Stats stats = 2;
 }
 
 message PublishConsumerStatsResponse {
   entities.v1.Result result = 1;
 }
 
-message RegisterConsumerInfoRequest{
+message UpdateConsumerInfoRequest{
   entities.v1.ConsumerInfo consumer_info = 1;
 }
 
-message RegisterConsumerInfoResponse{
+message UpdateConsumerInfoResponse{
   entities.v1.Result result = 1;
 }
 

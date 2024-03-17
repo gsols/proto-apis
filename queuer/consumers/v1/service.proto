@@ -25,7 +25,14 @@ option php_namespace = "GSols\\PHPProto\\Queuer\\Consumers\\v1";
 option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Consumers\\v1\\Metadata";
 
 service ConsumerService {
-  rpc RegisterConsumerInfo(RegisterConsumerInfoRequest) returns (RegisterConsumerInfoResponse) {
+  rpc RegisterConsumer(RegisterConsumerRequest) returns (RegisterConsumerResponse) {
+    option (google.api.http) = {
+      post: "/v1/consumers"
+      body: "*"
+    };
+  }
+
+  rpc UpdateConsumerInfo(UpdateConsumerInfoRequest) returns (UpdateConsumerInfoResponse) {
     option (google.api.http) = {
       post: "/v1/consumers/{consumer_id}/info"
       body: "*"
