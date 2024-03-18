@@ -41,7 +41,7 @@ service ConsumerService {
 
   rpc PublishConsumerStats(stream PublishConsumerStatsRequest) returns (PublishConsumerStatsResponse) {
     option (google.api.http) = {
-      post: "/v1/consumers/{consumer_id}/stats"
+      post: "/v1/consumers/stats"
       body: "*"
     };
   }

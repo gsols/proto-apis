@@ -41,27 +41,27 @@ service StreamService {
 
   rpc FlushStream(FlushStreamRequest) returns (FlushStreamResponse) {
     option (google.api.http) = {
-      post: "/v1/streams/{stream_id}:flush"
+      post: "/v1/streams/{stream_id}/flush"
     };
   }
 
   rpc PublishMessage(PublishMessageRequest) returns (PublishMessageResponse) {
     option (google.api.http) = {
-      post: "/v1/streams/{stream_id}:publish"
+      post: "/v1/streams/{stream_id}/publish"
       body: "*"
     };
   }
 
   rpc Subscribe(SubscribeRequest) returns (stream SubscribeResponse) {
     option (google.api.http) = {
-      post: "/v1/streams/{stream_id}/messages"
+      post: "/v1/streams/messages"
       body: "*"
     };
   }
 
   rpc UpdateState(UpdateStateRequest) returns (UpdateStateResponse) {
     option (google.api.http) = {
-      patch: "/v1/streams/{stream_id}:state"
+      patch: "/v1/streams/{stream_id}/state"
       body: "*"
     };
   }
