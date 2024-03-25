@@ -22,7 +22,7 @@ option php_namespace = "GSols\\PHPProto\\Queuer\\Streams\\v1";
 option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Streams\\v1\\Metadata";
 
 service StreamService {
-  rpc CreateStream(CreateStreamRequest) returns (CreateStreamResponse) {
+  rpc Register(RegisterRequest) returns (RegisterResponse) {
     option (google.api.http) = {
       post: "/v1/streams"
       body: "*"

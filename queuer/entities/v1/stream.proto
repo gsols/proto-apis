@@ -20,6 +20,8 @@ option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Entities\\v1\\Metadata
 message Stream {
   string id = 1 [(validate.rules).string.uuid = true];
   string name = 2 [(validate.rules).string = {min_len: 1, max_len: 100}];
+  string connector = 3 [(validate.rules).string = {ip: true, ignore_empty: true}];
+  string port = 4 [(validate.rules).string = {ignore_empty: true}];
 }
 
 enum StreamState {

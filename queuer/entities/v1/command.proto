@@ -17,24 +17,24 @@ option go_package = "github.com/gsols/goproto/queuer/entities/v1;v1";
 option php_namespace = "GSols\\PHPProto\\Queuer\\Entities\\v1";
 option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Entities\\v1\\Metadata";
 
+enum Action {
+  ACTION_UNSPECIFIED = 0;
+  ACTION_REQUEST_RELOAD = 1;
+  ACTION_REQUEST_RESTART = 2;
+  ACTION_REQUEST_REBOOT = 3;
+  ACTION_REQUEST_NETWORK_SPEED = 4;
+  ACTION_REQUEST_UPDATE_SERVICE = 5;
+  ACTION_REQUEST_LOGS = 6;
+
+  ACTION_REQUEST_TEST = 7;
+  ACTION_REQUEST_STATUS = 8;
+}
+
 message Command {
-  string id = 1 [(validate.rules).string.uuid = true];
-  CommandAction action = 2;
-  bytes payload = 3;
-}
-
-enum CommandAction {
-  COMMAND_ACTION_UNSPECIFIED = 0;
-  COMMAND_ACTION_REQ_RESTART_SERVICE = 1;
-  COMMAND_ACTION_REQ_REBOOT_SYSTEM = 2;
-  COMMAND_ACTION_REQ_NETWORK_SPEED = 3;
-  COMMAND_ACTION_REQ_UPDATE_SERVICE = 4;
-}
-
-enum CommandStatus {
-  COMMAND_STATUS_UNSPECIFIED = 0;
-  COMMAND_STATUS_PENDING = 1;
-  COMMAND_STATUS_IN_PROGRESS = 2;
-  COMMAND_STATUS_COMPLETED = 3;
-  COMMAND_STATUS_FAILED = 4;
+  string id = 1 [(validate.rules).string = {uuid: true, ignore_empty: true}];
+  Action action = 2;
+  optional bytes payload = 3;
+  optional bytes output = 4;
+  optional google.protobuf.Timestamp confirmed_at = 5;
+  optional google.protobuf.Timestamp created_at = 6;
 }

@@ -21,13 +21,17 @@ option go_package = "github.com/gsols/goproto/queuer/streams/v1;v1";
 option php_namespace = "GSols\\PHPProto\\Queuer\\Streams\\v1";
 option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Streams\\v1\\Metadata";
 
-message CreateStreamRequest {
-  string name = 1 [(validate.rules).string.min_len = 3];
-  string owner_id = 2 [(validate.rules).string.uuid = true];
+message RegisterRequest {
+  optional string id = 1 [(validate.rules).string = {uuid: true, ignore_empty: true}];
+  string name = 2 [(validate.rules).string.min_len = 3];
+  string owner_id = 3 [(validate.rules).string.uuid = true];
+  optional string connector = 4 [(validate.rules).string = {ip: true, ignore_empty: true}];
+  optional int32 port = 5 [(validate.rules).int32 = {gte: 1, lte: 65535}];
 }
 
-message CreateStreamResponse {
-  entities.v1.Stream stream = 1;
+message RegisterResponse {
+  entities.v1.Result result = 1;
+  entities.v1.Stream stream = 2;
 }
 
 message GetStreamRequest {

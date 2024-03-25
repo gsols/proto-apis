@@ -32,10 +32,34 @@ service ConsumerService {
     };
   }
 
-  rpc UpdateConsumerInfo(UpdateConsumerInfoRequest) returns (UpdateConsumerInfoResponse) {
+  rpc GetConsumer(GetConsumerRequest) returns (GetConsumerResponse) {
     option (google.api.http) = {
-      post: "/v1/consumers/{consumer_id}/info"
+      get: "/v1/consumers/{consumer_id}"
+    };
+  }
+
+  rpc GetAuthorizedConsumers(GetAuthorizedConsumersRequest) returns (GetAuthorizedConsumersResponse) {
+    option (google.api.http) = {
+      get: "/v1/consumers/authorized"
+    };
+  }
+
+  rpc GetUnauthorizedConsumers(GetUnauthorizedConsumersRequest) returns (GetUnauthorizedConsumersResponse) {
+    option (google.api.http) = {
+      get: "/v1/consumers/unauthorized"
+    };
+  }
+
+  rpc AuthorizeConsumer(AuthorizeConsumerRequest) returns (AuthorizeConsumerResponse) {
+    option (google.api.http) = {
+      post: "/v1/consumers/{consumer_id}/authorize"
       body: "*"
+    };
+  }
+
+  rpc RetrieveConsumerCredentials(RetrieveConsumerCredentialsRequest) returns (RetrieveConsumerCredentialsResponse) {
+    option (google.api.http) = {
+      get: "/v1/consumers/{consumer_id}/credentials"
     };
   }
 
@@ -46,9 +70,15 @@ service ConsumerService {
     };
   }
 
-  rpc GetSubscribedStreams(GetSubscribedStreamsRequest) returns (GetSubscribedStreamsResponse) {
+  rpc GetConsumerStreams(GetConsumerStreamsRequest) returns (GetConsumerStreamsResponse) {
     option (google.api.http) = {
       get: "/v1/consumers/{consumer_id}/streams"
+    };
+  }
+
+  rpc GetSubscribedStreams(GetSubscribedStreamsRequest) returns (GetSubscribedStreamsResponse) {
+    option (google.api.http) = {
+      get: "/v1/consumers/{consumer_id}/subscribed"
     };
   }
 }

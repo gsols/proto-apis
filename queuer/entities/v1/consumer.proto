@@ -19,23 +19,14 @@ option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Entities\\v1\\Metadata
 
 message Consumer {
   string id = 1 [(validate.rules).string.uuid = true];
+  string version = 2 [(validate.rules).string = {min_len: 1}];
+  bool is_active = 3;
+  string os = 4 [(validate.rules).string = {min_len: 1}];
+  string arch = 5 [(validate.rules).string = {min_len: 1}];
+  string ip = 6 [(validate.rules).string = {min_len: 1}];
+  string hostname = 7 [(validate.rules).string = {min_len: 1}];
+  string boot_time = 8 [(validate.rules).string = {min_len: 1}];
+  optional Owner owner = 9;
 }
 
-message ConsumerInfo{
-  HostInfo host = 1;
-  ProcessInfo process = 2;
-}
 
-message HostInfo {
-  string os = 1 [(validate.rules).string = {min_len: 1}];
-  string arch = 2 [(validate.rules).string = {min_len: 1}];
-
-  string ip = 3 [(validate.rules).string = {min_len: 1}];
-  string hostname = 4 [(validate.rules).string = {min_len: 1}];
-  string boot_time = 5 [(validate.rules).string = {min_len: 1}];
-}
-
-message ProcessInfo{
-  string pid = 1 [(validate.rules).string = {min_len: 1}];
-  string uid = 2 [(validate.rules).string = {min_len: 1}];
-}

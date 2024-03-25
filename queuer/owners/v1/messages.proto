@@ -21,7 +21,8 @@ option php_namespace = "GSols\\PHPProto\\Queuer\\Owners\\v1";
 option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Owners\\v1\\Metadata";
 
 message CreateOwnerRequest {
-  string name = 1 [(validate.rules).string.min_len = 1];
+  optional string id = 1 [(validate.rules).string.uuid = true];
+  string name = 2 [(validate.rules).string.min_len = 1];
 }
 
 message CreateOwnerResponse {
@@ -34,6 +35,13 @@ message GetOwnerRequest {
 
 message GetOwnerResponse {
   entities.v1.Owner owner = 1;
+}
+
+message GetOwnersRequest {
+}
+
+message GetOwnersResponse {
+  repeated entities.v1.Owner owners = 1;
 }
 
 message ListStreamsRequest {

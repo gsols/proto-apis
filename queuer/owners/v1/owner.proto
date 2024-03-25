@@ -34,6 +34,12 @@ service OwnerService {
     };
   };
 
+  rpc GetOwners(GetOwnersRequest) returns (GetOwnersResponse){
+    option (google.api.http) = {
+      get: "/v1/owners"
+    };
+  };
+
   rpc RegisterConsumer(RegisterConsumerRequest) returns (RegisterConsumerResponse) {
     option (google.api.http) = {
       post: "/v1/owners/{owner_id}/consumers"

@@ -24,12 +24,49 @@ option php_namespace = "GSols\\PHPProto\\Queuer\\Consumers\\v1";
 option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Consumers\\v1\\Metadata";
 
 message RegisterConsumerRequest {
-  entities.v1.Consumer consumer = 1;
+  entities.v1.Consumer consumer = 1 [(validate.rules).message.required = true];
+  bytes public_key = 2 [(validate.rules).bytes.min_len = 1, (validate.rules).bytes.max_len = 4096];
 }
 
 message RegisterConsumerResponse {
   entities.v1.Result result = 1;
-  entities.v1.Session session = 2;
+}
+
+message GetConsumerRequest {
+  string consumer_id = 1 [(validate.rules).string.uuid = true];
+}
+
+message GetConsumerResponse {
+  entities.v1.Consumer consumer = 1;
+}
+
+message GetUnauthorizedConsumersRequest {}
+
+message GetUnauthorizedConsumersResponse {
+  repeated entities.v1.Consumer consumers = 1;
+}
+
+message GetAuthorizedConsumersRequest {}
+
+message GetAuthorizedConsumersResponse {
+  repeated entities.v1.Consumer consumers = 1;
+}
+
+message AuthorizeConsumerRequest{
+  string consumer_id = 1 [(validate.rules).string.uuid = true];
+  string owner_id = 2 [(validate.rules).string.uuid = true];
+}
+
+message AuthorizeConsumerResponse{
+  entities.v1.Result result = 1;
+}
+
+message RetrieveConsumerCredentialsRequest{
+  string consumer_id = 1 [(validate.rules).string.uuid = true];
+}
+
+message RetrieveConsumerCredentialsResponse{
+  bytes credentials = 1;
 }
 
 message PublishConsumerStatsRequest {
@@ -41,19 +78,18 @@ message PublishConsumerStatsResponse {
   entities.v1.Result result = 1;
 }
 
-message UpdateConsumerInfoRequest{
-  string consumer_id = 1 [(validate.rules).string.uuid = true];
-  entities.v1.ConsumerInfo consumer_info = 2;
-}
-
-message UpdateConsumerInfoResponse{
-  entities.v1.Result result = 1;
-}
-
 message GetSubscribedStreamsRequest{
   string consumer_id = 1 [(validate.rules).string.uuid = true];
 }
 
 message GetSubscribedStreamsResponse{
+  repeated entities.v1.Stream streams = 1;
+}
+
+message GetConsumerStreamsRequest{
+  string consumer_id = 1 [(validate.rules).string.uuid = true];
+}
+
+message GetConsumerStreamsResponse{
   repeated entities.v1.Stream streams = 1;
 }
