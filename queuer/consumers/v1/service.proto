@@ -57,6 +57,13 @@ service ConsumerService {
     };
   }
 
+  rpc DeauthorizeConsumer(DeauthorizeConsumerRequest) returns (DeauthorizeConsumerResponse) {
+    option (google.api.http) = {
+      post: "/v1/consumers/{consumer_id}/deauthorize"
+      body: "*"
+    };
+  }
+
   rpc RetrieveConsumerCredentials(RetrieveConsumerCredentialsRequest) returns (RetrieveConsumerCredentialsResponse) {
     option (google.api.http) = {
       get: "/v1/consumers/{consumer_id}/credentials"

@@ -61,6 +61,14 @@ message AuthorizeConsumerResponse{
   entities.v1.Result result = 1;
 }
 
+message DeauthorizeConsumerRequest{
+  string consumer_id = 1 [(validate.rules).string.uuid = true];
+}
+
+message DeauthorizeConsumerResponse{
+  entities.v1.Result result = 1;
+}
+
 message RetrieveConsumerCredentialsRequest{
   string consumer_id = 1 [(validate.rules).string.uuid = true];
 }
