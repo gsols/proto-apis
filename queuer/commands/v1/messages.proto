@@ -30,10 +30,10 @@ message SubscribeResponse {
 }
 
 message CreateRequest {
-  string consumer_id = 1 [(validate.rules).string.uuid = true];
-  entities.v1.Action action = 2;
-  optional string stream_id = 3 [(validate.rules).string= {uuid: true, ignore_empty: true}];
-  optional bytes payload = 4;
+  entities.v1.Action action = 1;
+  optional bytes payload = 2;
+  optional string consumer_id = 3 [(validate.rules).string = {uuid: true, ignore_empty: true}];
+  optional string stream_id = 4 [(validate.rules).string = {uuid: true, ignore_empty: true}];
 }
 
 message CreateResponse {
