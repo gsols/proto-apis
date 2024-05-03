@@ -18,4 +18,6 @@ option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Entities\\v1\\Metadata
 message Owner {
   string id = 1 [(validate.rules).string.uuid = true];
   string name = 2 [(validate.rules).string = {min_len: 1, max_len: 100}];
+  optional int32 consumers = 3;
+  optional int32 streams = 4;
 }
