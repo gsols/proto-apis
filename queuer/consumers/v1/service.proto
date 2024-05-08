@@ -17,12 +17,23 @@ import "queuer/entities/v1/stats.proto";
 
 
 import "queuer/consumers/v1/messages.proto";
+import "queuer/consumers/v1/presence.proto";
 
 // Defines the import path that should be used to import the generated package,
 // and the package name.
 option go_package = "github.com/gsols/goproto/queuer/consumers/v1;v1";
 option php_namespace = "GSols\\PHPProto\\Queuer\\Consumers\\v1";
 option php_metadata_namespace = "GSols\\PHPProto\\Queuer\\Consumers\\v1\\Metadata";
+
+service PresenceService {
+  rpc IAmAlive(IAmAliveRequest) returns (IAmAliveResponse) {
+    option (google.api.http) = {
+      post: "/v1/presence/live"
+      body: "*"
+    };
+  }
+}
+
 
 service ConsumerService {
   rpc RegisterConsumer(RegisterConsumerRequest) returns (RegisterConsumerResponse) {
