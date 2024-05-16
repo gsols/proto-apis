@@ -10,6 +10,7 @@ import "google/protobuf/timestamp.proto";
 import "validate/validate.proto";
 
 import "queuer/entities/v1/owner.proto";
+import "queuer/entities/v1/stream.proto";
 
 // Defines the import path that should be used to import the generated package,
 // and the package name.
@@ -22,6 +23,9 @@ message Message {
   string id = 1 [(validate.rules).string.uuid = true];
   bytes payload = 2;
   Priority priority = 3;
+  optional entities.v1.Stream stream = 4;
+  optional google.protobuf.Timestamp acknowledged_at = 5;
+  optional google.protobuf.Timestamp created_at = 6;
 }
 
 enum Priority {
